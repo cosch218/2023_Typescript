@@ -31,6 +31,18 @@ export default class TypeClassComp extends Component<CounterProps, CounterState>
       array: [1,2,3]
     }
   }
+
+  // 이벤트 함수 안에 들어가있으면 e 객체의 자료형을 지정할 필요가 없지만,
+  // 밖으로 꺼내서 쓰면 관련 이벤트의 자료형으로 작성
+  // >> (e: React.ChangeEvent<HTMLInputElement>)
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({text: e.target.value})
+  }
+
+  handleNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({number: parseInt(e.target.value)})
+  }
+
   render() {
     return (
       <div>
@@ -47,6 +59,34 @@ export default class TypeClassComp extends Component<CounterProps, CounterState>
             <li>{num}</li>
           ))
         }
+
+        <div style={{width: '300px', margin: 'auto', paddingBottom: '20px', border: '1px solid black'}}>
+          <p>* 바뀌는 숫자 : {this.state.number}</p>
+          <button 
+            onClick={()=>{this.setState({number:this.state.number + 1})}}
+          >
+            +1
+          </button>
+          <br />
+        </div>
+
+        {/** 이벤트 객체의 값을 가져오는 이벤트 함수 */}
+        <div style={{width: '300px', margin: 'auto', paddingBottom: '20px', border: '1px solid black'}}>
+          <p>* 글자 작성 : {this.state.text}</p>
+          <input 
+            type="text" 
+            onChange={this.handleChange}
+          />
+        </div>
+
+        {/** input 태그에 숫자값을 넣으면 state의 num이 바뀜 */}
+        <div style={{width: '300px', margin: 'auto', paddingBottom: '20px', border: '1px solid black'}}>
+          <p>* 숫자 작성 : {this.state.number}</p>
+          <input 
+            type="number" 
+            onChange={this.handleNum}
+          />
+        </div>
       </div>
     )
   }

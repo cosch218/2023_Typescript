@@ -3,6 +3,7 @@ import './App.css';
 import NoProps from './components/NoProps';
 import TypeClassComp from './components/TypeClassComp';
 import TypeFunctionComp from './components/TypeFunctionComp';
+import TypeArrowFunctionComp from './components/TypeArrowFunctionComp';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <TypeClassComp startNumber={3} name='홍길동' check/>
       {/** 함수형 */}
       <TypeFunctionComp startNumber={0} check/>
+      {/** 화살표함수형 */}
+      <TypeArrowFunctionComp startNumber={1}/>
     </div>
   );
 }
